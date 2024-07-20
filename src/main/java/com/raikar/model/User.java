@@ -26,7 +26,7 @@ public class User {
     @Column(length = 50, unique = true)
     private String email;
 
-    @Column(length = 15, nullable = false, unique = true)
+    @Column(length = 50, nullable = false, unique = true)
     private Integer phoneNo;
 
     @Enumerated(value = EnumType.STRING)

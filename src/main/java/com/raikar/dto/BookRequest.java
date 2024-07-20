@@ -21,8 +21,8 @@ public class BookRequest {
     @NotBlank(message = "Enter Book No")
     private String bookNo;
 
-    @Positive(message = "Enter Positive Security Amt")
-    private int SecurityAmount;
+    @NotNull(message = "Enter Security Amt")
+    private int securityAmount;
 
     @NotBlank(message = "Enter Author Name")
     private String authorName;
@@ -46,7 +46,7 @@ public class BookRequest {
         return Book.builder().
                 title(this.bookTitle)
                         .bookNo(this.bookNo)
-                                .securityAmount(this.SecurityAmount)
+                                .securityAmount(this.securityAmount)
                                         .bookType(this.bookType).
                 build();
     }
