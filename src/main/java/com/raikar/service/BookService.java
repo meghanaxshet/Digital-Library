@@ -1,12 +1,14 @@
 package com.raikar.service;
 
 import com.raikar.dto.BookRequest;
-import com.raikar.model.Author;
-import com.raikar.model.Book;
+import com.raikar.model.*;
 import com.raikar.repository.AuthorRepository;
 import com.raikar.repository.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class BookService {
@@ -27,5 +29,23 @@ public class BookService {
    book.setAuthor(authorFromDb);
 
    return bookRepository.save(book);
+    }
+
+    public List<Book> filter(FilterType filterType, Operation operation, String value) {
+        switch (filterType){
+            case BOOK_TYPE :
+                switch (operation){
+                    case EQUALS :
+                        return bookRepository.findByBookType(BookType.valueOf(value));
+
+                }
+            case BOOK_TITLE:
+                switch (operation){
+                    case EQUALS :
+                        return bookRepository.findByTitle(value);
+                }
+
+        }
+        return new ArrayList<>();
     }
 }
